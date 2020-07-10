@@ -61,7 +61,7 @@ function iniciarJogo(){
             snakeX += box;
             break;
         case "left":
-            snakeY -= box;
+            snakeX -= box;
             break;
         case "up":
             snakeY -= box;
