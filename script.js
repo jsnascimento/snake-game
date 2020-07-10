@@ -35,19 +35,34 @@ function gerarComida(){
 
 document.addEventListener('keydown', getTeclado);
 
+//Função para verificar qual seta foi pressionada e alterar atualizar a diração
 function getTeclado(event){
-    if(event.keyCode == 37 && direction != "right") direction = "left";
-    if(event.keyCode == 38 && direction != "down") direction = "up";
-    if(event.keyCode == 39 && direction != "left") direction = "right";
-    if(event.keyCode == 40 && direction != "up") direction = "down";
+    if(event.keyCode == 37 && direction != "right") 
+        direction = "left";
+
+    if(event.keyCode == 38 && direction != "down")
+        direction = "up";
+
+    if(event.keyCode == 39 && direction != "left")
+        direction = "right";
+
+    if(event.keyCode == 40 && direction != "up")
+        direction = "down";
 }
 
 //Função para rodar o jogo
 function iniciarJogo(){
-    if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
-    if(snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
-    if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
-    if(snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
+    if(snake[0].x > 15 * box && direction == "right")
+        snake[0].x = 0;
+
+    if(snake[0].x < 0 && direction == "left")
+        snake[0].x = 16 * box;
+
+    if(snake[0].y > 15 * box && direction == "down")
+        snake[0].y = 0;
+
+    if(snake[0].y < 0 && direction == "up")
+        snake[0].y = 16 * box;
 
     criarBG();
     criarCobra();
@@ -71,7 +86,13 @@ function iniciarJogo(){
             break;
     }
 
-    snake.pop();
+    if(snakeX != comida.x || snakeY != comida.y){
+        snake.pop();
+    }
+    else{
+        comida.x = Math.floor(Math.random() * 15 + 1) * box;
+        comida.y = Math.floor(Math.random() * 15 + 1) * box;
+    }
 
     let novaCabeca = {
         x: snakeX,
